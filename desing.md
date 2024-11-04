@@ -36,8 +36,39 @@ Modulos usados en el proyecto
 - module_aws_ec2_autoescaling_private: este modulo es diseñado para que las mv que esten expuestas en internet se configuren en el. En este modulo se configuro el autoescalamiento de las mv cuando el consumo de los recursos lleguen a un tope en especifico.
 
 
+
+DIAGRAMA DEL PROYECTO
+
+
+
 ![Screenshot of a comment on a GitHub issue showing an image, added in the Markdown, of an Octocat smiling and raising a tentacle.](diagrama.jpg)
 
+
+
+
+El diagrama represeta graficamente la arquitectura que tendra el proyecto, en donde las app se van alojar en los grupos de autoescalados que estan separados por las subredes publica y privada.
+
+La arquitectura del proyecto es la siguiente:
+
+- Red VPC del proyecto.
+- Subredes publica y privada que estan en zonas para su alta disponibilidad
+- Tablas de ruteo para las subredes
+- Load balancer para el autoescaling de la app 1 y 2
+- RDS para la base de datos 
+- Security groups que son coo las reglas de firewall.
+- Internet gateway para la salida de nternet de la subred publica
+- Nat gateway para la salida de internet de las subredes privadas 
+
+
+#####################################################33
+CI/CD con github actions
+
+
+
+Despliegue de las app en AWS: en el github de blank se realzo la configuración del desplegue de las app por medio de las git hub actions, en donde se configura el ambiente para realizar la conexión desde github hacia aws. Esta conexión se realiza por medio de una cuenta y una key y se setean en donde esta alojado el proyecto, despues de realizar la conexión, el github action intenta de realizar el build del docker para poderlo subir al recurso de ECR de aws, con ello esas imagenes se pueden usar desde los servidores o desde el cluster de kubernetes.
+
+
+Despliegue de la infraestructura con terraform: en el github actions de infraestructure se realiza el despliegue de la arquitecrura del proyecto, en donde tambien se hace la conexión a aws por medio de una secret y una key, despues de setear estos secretos, se realiza la conexión a aws y ejecuta un terraform plan para validar que es lo que se va a desplegar, de spues de validar esa parte, el sistema puede aplicar o no esos cambios, siempre y cuando se configure el terraform para ejecutar dicho proceso.
 
 
 
