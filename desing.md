@@ -36,7 +36,6 @@ Modulos usados en el proyecto
 - module_aws_ec2_autoescaling_private: este modulo es diseñado para que las mv que esten expuestas en internet se configuren en el. En este modulo se configuro el autoescalamiento de las mv cuando el consumo de los recursos lleguen a un tope en especifico.
 
 
-![Screenshot of a comment on a GitHub issue showing an image, added in the Markdown, of an Octocat smiling and raising a tentacle.](https://myoctocat.com/assets/images/base-octocat.svg)
 
 
 
